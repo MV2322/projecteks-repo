@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadbalancer-svc12
+spec:
+  type: LoadBalancer
+  selector:
+    app: hello
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadbalancer-dep1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello 
+    spec:
+      containers:
+        - name: hello
+          image: 945134883470.dkr.ecr.us-east-2.amazonaws.com/boobalan-repo:1.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
