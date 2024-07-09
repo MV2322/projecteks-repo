@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: hello
-          image: 945134883470.dkr.ecr.us-east-2.amazonaws.com/boobalan-repo:1.1
+          image: dhiv123/myweb:0.0.2
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
